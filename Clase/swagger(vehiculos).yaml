@@ -1,0 +1,142 @@
+swagger: "2.0"
+info:
+  description: "Api para gestionar las operaciones CRUD de una tienda de vehículos"
+  version: "1.0.0"
+  title: "Venta de vehículos"
+  termsOfService: "http://vehiculos.io/terminosycondiciones/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "vehiculos.swagger.io"
+basePath: "/v1"
+tags:
+- name: "vehiculos"
+  description: "Todo sobre sus vehículos"
+  externalDocs:
+    description: "Documentación externa sobre los vehículos"
+    url: "http://ejemplo.com/vehículos"
+schemes:
+- "https"
+- "http"
+paths:
+  /vehiculos:
+    post:
+      tags:
+      - "vehiculos"
+      summary: "Agrega un nuevo vehículo a la tienda"
+      description: "Endpoint para agregar vehículos al inventario de la tienda"
+      operationId: "agregarVehiculo"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto vehículo que sera agregado a la base de datos"
+        required: true
+        schema:
+          $ref: "#/definitions/Vehiculo"
+      responses:
+        "200":
+          description: "Operacion exitosa"
+        "405":
+          description: "Entrada de datos invalida"
+    get:
+      tags:
+      - "vehiculos"
+      summary: "Enlista los vehiculos en inventario la tienda"
+      description: "Endpoint para enlistar vehículos del inventario de la tienda"
+      operationId: "leerVehiculos"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Vehiculo"
+        "400":
+          description: "Url invalida"
+    put:
+      tags:
+      - "vehiculos"
+      summary: "Actualiza un vehiculo en inventario la tienda"
+      description: "Endpoint para actualizar vehículos del inventario de la tienda"
+      operationId: "actualizarVehiculo"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto vehículo que sera actualizado en la base de datos"
+        required: true
+        schema:
+          $ref: "#/definitions/Vehiculo"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Vehiculo"
+        "400":
+          description: "Url invalida"
+    delete:
+      tags:
+      - "vehiculos"
+      summary: "Borra un vehiculo del inventario la tienda"
+      description: "Endpoint para eliminar vehículos del inventario de la tienda"
+      operationId: "borrarVehiculo"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto vehículo que sera actualizado en la base de datos"
+        required: true
+        schema:
+          $ref: "#/definitions/Vehiculo"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Vehiculo"
+        "404":
+          description: "Vehículo no encontrado"
+definitions:
+  Vehiculo:
+    type: "object"
+    properties:
+      marca:
+        type: "string"
+      modelo:
+        type: "string"
+      fechaFabricacion: 
+        type: "string"
+      cantidadPuertas:
+        type: "integer"
+        format: "int64"
+      disponible:
+        type: "boolean"
+    xml:
+      name: "Vehiculo"
+      
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

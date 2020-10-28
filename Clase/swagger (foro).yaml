@@ -1,0 +1,329 @@
+swagger: "2.0"
+info:
+  description: "API que gestiona el intercambio de informacion entre los usuarios. Crea y modifica usuarios, comentarios y tópicos"
+  version: "1.0.0"
+  title: "Foro"
+  termsOfService: "http://foro.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "foro.swagger.io"
+basePath: "/v1"
+tags:
+- name: "usuarios"
+  description: "Todo sobre usurios"
+  externalDocs:
+    description: "Documentación externa sobre los Usuarios"
+    url: "http://ejemplo.io/foro"
+- name: "comentarios"
+  description: "Acceso a comentarios"
+  externalDocs:
+    description: "Documentación externa sobre los Usuarios"
+    url: "http://ejemplo.io/foro"
+- name: "topicos"
+  description: "Todo sobre los topicos del foro"
+  externalDocs:
+    description: "Documentación externa sobre los topicos"
+    url: "http://ejemplo.io/foro"    
+schemes:
+- "https"
+- "http"
+paths:
+  /Usuarios: 
+    post:
+      tags:
+      - "usuarios"
+      summary: "Agrega un nuevo usuario al foro"
+      description: "Endpoint para agregar un nuevo usuario al inventario del foro"
+      operationId: "addUsuario"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto usuario que sera agregado a la base de datos"
+        required: true
+        schema:
+          $ref: "#/definitions/Usuario"
+      responses:
+        "200":
+          description: "Operacion exitosa"
+        "405":
+          description: "Operacion invalida"
+    put:
+      tags:
+      - "usuarios"
+      summary: "Actualizar un usuario del inventario del foro"
+      description: "Actulizar un usuario del inventario del foro"
+      operationId: "updateUsuario"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto Usuario que será actulizado en la base de datos"
+        required: true
+        schema:
+          $ref: "#/definitions/Usuario"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Usuario"
+        "400":
+          description: "URL invalida"   
+    delete:
+      tags:
+      - "usuarios"
+      summary: "Borrar un usuarios del inventario del foro"
+      description: "Endpoint para eliminar un usuario del foro"
+      operationId: "deleteUsuario"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto Usuario que será eliminado"
+        required: true
+        schema:
+          $ref: "#/definitions/Usuario"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Usuario"
+        "404":
+          description: "Usuario no encontrado"        
+  /Comentarios: 
+    post:
+      tags:
+      - "comentarios"
+      summary: "Agrega un nuevo comentario al foro"
+      description: "Endpoint para agregar un nuevo comentario al inventario del foro"
+      operationId: "addComentario"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto comentario que sera agregado a la base de datos"
+        required: true
+        schema:
+          $ref: "#/definitions/Comentario"
+      responses:
+        "200":
+          description: "Operacion exitosa"
+        "405":
+          description: "Operacion invalida"
+    put:
+      tags:
+      - "comentarios"
+      summary: "Actualizar un comentario del inventario del foro"
+      description: "Actulizar un cometario del inventario del foro"
+      operationId: "updateComentario"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto comentario que será actulizado en la base de datos"
+        required: true
+        schema:
+          $ref: "#/definitions/Comentario"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Comentario"
+        "400":
+          description: "URL invalida"   
+    delete:
+      tags:
+      - "comentarios"
+      summary: "Borrar un comentario del inventario del foro"
+      description: "Endpoint para eliminar un comentario del foro"
+      operationId: "deleteComentario"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto Comentario que será eliminado"
+        required: true
+        schema:
+          $ref: "#/definitions/Comentario"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Comentario"
+        "404":
+          description: "Comentario no encontrado"  
+  /Topicos: 
+    post:
+      tags:
+      - "topicos"
+      summary: "Agrega un nuevo topicos al foro"
+      description: "Endpoint para agregar un nuevo topicos al inventario del foro"
+      operationId: "addTopico"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto topico que sera agregado a la base de datos"
+        required: true
+        schema:
+          $ref: "#/definitions/Topico"
+      responses:
+        "200":
+          description: "Operacion exitosa"
+        "405":
+          description: "Operacion invalida"
+    put:
+      tags:
+      - "topicos"
+      summary: "Actualizar un topico del inventario del foro"
+      description: "Actulizar un topico del inventario del foro"
+      operationId: "updateTopico"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto Topico que será actulizado en la base de datos"
+        required: true
+        schema:
+          $ref: "#/definitions/Topico"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Topico"
+        "400":
+          description: "URL invalida"   
+    delete:
+      tags:
+      - "topicos"
+      summary: "Borrar un topico del inventario del foro"
+      description: "Endpoint para eliminar un topico del foro"
+      operationId: "deleteTopico"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Objeto Topico que será eliminado"
+        required: true
+        schema:
+          $ref: "#/definitions/Topico"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/Topico"
+        "404":
+          description: "Topico no encontrado"              
+securityDefinitions:
+  petstore_auth:
+    type: "oauth2"
+    authorizationUrl: "http://petstore.swagger.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:pets: "modify pets in your account"
+      read:pets: "read your pets"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  Usuario:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      nombre:
+        type: "string"
+      apellido:
+        type: "string"
+      email:
+        type: "string"
+      estado:
+        type: "boolean"
+        default: true   
+    xml:
+      name: "Usuario"
+  Topico:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      titulo:
+        type: "string"
+      descripcion:
+        type: "string"
+      estado:
+        type: "boolean"
+        default: true   
+    xml:
+      name: "Topico"
+  Comentario:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      topicoId:
+        type: "string"
+      usuarioId:
+        type: "string"
+      comentario:
+        type: "string"
+      estado:
+        type: "boolean"
+        default: true   
+    xml:
+      name: "Comentario" 
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
